@@ -21,6 +21,14 @@ conf.lua_ls.setup({})
 conf.cssls.setup({})
 conf.html.setup({})
 conf.solidity_ls.setup({})
-conf.tsserver.setup({})
+conf.tsserver.setup({
+  on_attach = lsp_zero.on_attach,
+  root_dir = conf.util.root_pattern("package.json"),
+  single_file_support = false
+})
 conf.rust_analyzer.setup({})
 conf.clangd.setup({})
+conf.denols.setup {
+  on_attach = lsp_zero.on_attach,
+  root_dir = conf.util.root_pattern("deno.json", "deno.jsonc"),
+}

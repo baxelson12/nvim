@@ -6,6 +6,6 @@ return {
       javascript = { { "prettierd", "prettier" } },
       rust = { "rustfmt" }
     },
-    format_on_save = { timeout_ms = 500, lsp_fallback = true },
+    format_on_save = { timeout_ms = 1000, lsp_fallback = true },
   },
 }
