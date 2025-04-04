@@ -1,60 +1,83 @@
-local lsp_zero = require("lsp-zero")
-local cmp = require('cmp')
+local conf = require("lspconfig")
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-cmp.setup({
-  mapping = {
-    ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-    ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-  }
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+  callback = function(ev)
+    local bufnr = ev.buf
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
+
+    if client.server_capabilities.inlayHintProvider then
+      vim.lsp.inlay_hint.enable(true)
+    end
+  end
 })
 
-lsp_zero.on_attach(function(client, bufnr)
-  -- see :help lsp-zero-keybindings
-  -- to learn the available actions
-  lsp_zero.default_keymaps({ buffer = bufnr })
-end)
-
-local conf = require("lspconfig")
-
-conf.lua_ls.setup({})
+conf.lua_ls.setup({
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim", "describe", "it", "before_each", "after_each" },
+      },
+    },
+  },
+})
 conf.cssls.setup({})
 conf.html.setup({})
 conf.solidity_ls.setup({})
-conf.tsserver.setup({
-  on_attach = lsp_zero.on_attach,
-  root_dir = conf.util.root_pattern("package.json"),
+conf.ts_ls.setup({
+  capabilities = capabilities,
   single_file_support = false,
-  settings = {
-    typescript = {
-      inlayHints = {
-        includeInlayParameterNameHints = "all",
-        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-        includeInlayFunctionParameterTypeHints = true,
-        includeInlayVariableTypeHints = true,
-        includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-        includeInlayPropertyDeclarationTypeHints = true,
-        includeInlayFunctionLikeReturnTypeHints = true,
-        includeInlayEnumMemberValueHints = true,
-      },
+  root_dir = conf.util.root_pattern("package.json"),
+  init_options = {
+    preferences = {
+      includeInlayParameterNameHints = 'all',
+      includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+      includeInlayFunctionParameterTypeHints = true,
+      includeInlayVariableTypeHints = true,
+      includeInlayPropertyDeclarationTypeHints = true,
+      includeInlayFunctionLikeReturnTypeHints = true,
+      includeInlayEnumMemberValueHints = true,
+      importModuleSpecifierPreference = 'non-relative',
     },
-    javascript = {
-      inlayHints = {
-        includeInlayParameterNameHints = "all",
-        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-        includeInlayFunctionParameterTypeHints = true,
-        includeInlayVariableTypeHints = true,
-        includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-        includeInlayPropertyDeclarationTypeHints = true,
-        includeInlayFunctionLikeReturnTypeHints = true,
-        includeInlayEnumMemberValueHints = true,
-      },
-    },
-  }
+  },
 })
+-- conf.tsserver.setup({
+--   on_attach = on_attach,
+--   root_dir = conf.util.root_pattern("package.json"),
+--   single_file_support = false,
+--   settings = {
+--     typescript = {
+--       inlayHints = {
+--         includeInlayParameterNameHints = "all",
+--         includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+--         includeInlayFunctionParameterTypeHints = true,
+--         includeInlayVariableTypeHints = true,
+--         includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+--         includeInlayPropertyDeclarationTypeHints = true,
+--         includeInlayFunctionLikeReturnTypeHints = true,
+--         includeInlayEnumMemberValueHints = true,
+--       },
+--     },
+--     javascript = {
+--       inlayHints = {
+--         includeInlayParameterNameHints = "all",
+--         includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+--         includeInlayFunctionParameterTypeHints = true,
+--         includeInlayVariableTypeHints = true,
+--         includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+--         includeInlayPropertyDeclarationTypeHints = true,
+--         includeInlayFunctionLikeReturnTypeHints = true,
+--         includeInlayEnumMemberValueHints = true,
+--       },
+--     },
+--   }
+-- })
 conf.rust_analyzer.setup({})
 conf.clangd.setup({})
 conf.denols.setup {
-  on_attach = lsp_zero.on_attach,
+  on_attach = on_attach,
   root_dir = conf.util.root_pattern("deno.json", "deno.jsonc"),
 }

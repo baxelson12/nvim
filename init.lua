@@ -21,5 +21,6 @@ require("settings")
 
 require("after.plugins.gitsigns")
 require("after.plugins.indent")
+require("after.plugins.cmp")
 require("after.plugins.lsp")
 require("after.plugins.lualine")
