@@ -34,7 +34,7 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
     ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ['<S-CR>'] = cmp.mapping.confirm({ select = true }),
     -- Not working the way i'd like
     -- ["<CR>"] = cmp.mapping({
     --   i = function(fallback)

@@ -7,7 +7,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local bufnr = ev.buf
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
     vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
-
     if client.server_capabilities.inlayHintProvider then
       vim.lsp.inlay_hint.enable(true)
     end
@@ -24,15 +23,30 @@ conf.lua_ls.setup({
     },
   },
 })
+
 conf.cssls.setup({})
+
 conf.html.setup({})
-conf.solidity_ls.setup({})
+
+-- conf.solidity_ls.setup({})
+--
+conf.solidity_ls.setup({
+  capabilities = capabilities,
+  settings = {
+    solidity = {
+      compileUsingRemoteVersion = 'v0.8.26',
+      defaultCompiler = 'remote',
+      enabledAsYouTypeCompilationErrorCheck = true,
+    },
+  }
+})
+
 conf.ts_ls.setup({
   capabilities = capabilities,
   single_file_support = false,
   root_dir = conf.util.root_pattern("package.json"),
   init_options = {
-    // REF: https://github.com/microsoft/TypeScript/blob/v5.0.4/src/server/protocol.ts#L3439
+    -- REF: https://github.com/microsoft/TypeScript/blob/v5.0.4/src/server/protocol.ts#L3439
     preferences = {
       includeInlayParameterNameHints = 'all',
       includeInlayParameterNameHintsWhenArgumentMatchesName = true,
@@ -45,6 +59,7 @@ conf.ts_ls.setup({
     },
   },
 })
+
 -- conf.tsserver.setup({
 --   on_attach = on_attach,
 --   root_dir = conf.util.root_pattern("package.json"),
@@ -76,8 +91,11 @@ conf.ts_ls.setup({
 --     },
 --   }
 -- })
+
 conf.rust_analyzer.setup({})
+
 conf.clangd.setup({})
+
 conf.denols.setup {
   on_attach = on_attach,
   root_dir = conf.util.root_pattern("deno.json", "deno.jsonc"),
