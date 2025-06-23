@@ -1,6 +1,7 @@
 local api = vim.api
 local baseopts = { noremap = true, silent = true }
 
+
 api.nvim_set_keymap("n", "<leader>q", "<cmd>Neotree<CR>", baseopts)
 api.nvim_set_keymap("i", "jk", "<esc>", baseopts)
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
@@ -43,3 +44,8 @@ api.nvim_set_keymap('n', '<leader>wd', '<C-w>l', { noremap = true, silent = true
 api.nvim_set_keymap('n', '<leader>wh', '<C-w>s', { noremap = true, silent = true })
 -- Set up mappings for creating a vertical split
 api.nvim_set_keymap('n', '<leader>wv', '<C-w>v', { noremap = true, silent = true })
+
+-- Mappings for minimap
+vim.keymap.set("n", "<leader>mm", function()
+  require("mini.map").toggle()
+end, { desc = "Toggle Minimap" })
