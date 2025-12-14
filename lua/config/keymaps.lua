@@ -45,7 +45,5 @@ api.nvim_set_keymap('n', '<leader>wh', '<C-w>s', { noremap = true, silent = true
 -- Set up mappings for creating a vertical split
 api.nvim_set_keymap('n', '<leader>wv', '<C-w>v', { noremap = true, silent = true })
 
--- Mappings for minimap
-vim.keymap.set("n", "<leader>mm", function()
-  require("mini.map").toggle()
-end, { desc = "Toggle Minimap" })
+-- LSP mappings
+vim.keymap.set("n", "<leader>xt", vim.lsp.buf.hover, { noremap = true, silent = true })

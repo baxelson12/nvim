@@ -17,3 +17,6 @@ end
 -- Enable persistent undo and set the undo directory
 opt.undofile = true
 opt.undodir = undodir
+
+-- Borders
+vim.opt.winborder = "rounded"

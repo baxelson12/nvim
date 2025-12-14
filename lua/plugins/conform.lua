@@ -13,6 +13,8 @@ return {
       }
     },
     formatters_by_ft = {
+      astro = { "prettier", stop_after_first = true },
+      html = { "prettier", stop_after_first = true },
       lua = { "stylua" },
       javascript = { "biome", "prettier", stop_after_first = true },
       typescript = { "biome", "prettier", stop_after_first = true },
@@ -20,6 +22,6 @@ return {
       json = { "biome", "prettier", stop_after_first = true },
       solidity = { "forge_fmt", stop_after_first = true }
     },
-    format_on_save = { timeout_ms = 1500, lsp_fallback = true },
+    format_on_save = { timeout_ms = 2500, lsp_fallback = true },
   },
 }

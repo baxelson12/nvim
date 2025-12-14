@@ -20,7 +20,9 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require("config.lsp").setup()
+      vim.schedule(function()
+        require("config.lsp").setup()
+      end, 0)
     end
   },
   {
@@ -56,9 +58,10 @@ return {
           documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
-          ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-          ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-          ['<S-CR>'] = cmp.mapping.confirm({ select = true }),
+          ['<C-p>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+          ['<C-o>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+          ['<C-Space>'] = cmp.mapping.confirm({ select = true }),
+          ['<C-e>'] = cmp.mapping.abort(),
           -- Not working the way i'd like
           -- ["<CR>"] = cmp.mapping({
           --   i = function(fallback)

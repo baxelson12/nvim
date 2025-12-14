@@ -1,0 +1,24 @@
+-- Remove unused imports
+-- TODO: Causes race conditions :/
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   pattern = "*",
+--   callback = function(args)
+--     local ft = vim.bo[args.buf].filetype
+--
+--     -- Only organize imports for JS/TS
+--     if ft == "typescript" or ft == "typescriptreact" or ft == "javascript" or ft == "javascriptreact" then
+--       vim.lsp.buf.execute_command({
+--         command = "_typescript.organizeImports",
+--         arguments = { vim.api.nvim_buf_get_name(0) }
+--       })
+--
+--       -- Schedule format after imports have been organized
+--       vim.defer_fn(function()
+--         require("conform").format({ bufnr = args.buf, async = false })
+--       end, 100) -- 100ms delay; adjust if needed
+--     else
+--       -- Just format for other filetypes
+--        require("conform").format({ bufnr = args.buf })
+--     end
+--   end,
+-- })
