@@ -1,3 +1,3 @@
 return function(lspconfig, handlers)
-  return { capabilities = handlers.capabilities }
+  return { cmd = { "rustup", "run", "stable", "rust-analyzer" }, capabilities = handlers.capabilities }
 end
