@@ -20,7 +20,8 @@ function M.setup()
     local get_server_config = require("config.lsp.servers." .. server_name)
     local server_config = get_server_config(lspconfig, handlers)
 
-    lspconfig[server_name].setup(server_config)
+    vim.lsp.config(server_name, server_config)
+    vim.lsp.enable(server_name)
   end
 end
 
