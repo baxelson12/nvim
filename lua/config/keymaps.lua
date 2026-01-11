@@ -2,7 +2,7 @@ local api = vim.api
 local baseopts = { noremap = true, silent = true }
 
 
-api.nvim_set_keymap("n", "<leader>q", "<cmd>Neotree<CR>", baseopts)
+api.nvim_set_keymap("n", "<leader>q", "<cmd>Oil<CR>", baseopts)
 api.nvim_set_keymap("i", "jk", "<esc>", baseopts)
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
