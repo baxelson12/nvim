@@ -7,6 +7,7 @@ opt.expandtab = true
 opt.relativenumber = true
 opt.number = true
 opt.statuscolumn = "%-2l %-3r "
+opt.scrolloff = 8
 -- vim.cmd([[colorscheme dracula-soft]])
 
 local undodir = vim.fn.expand("~/.local/share/nvim/undo")
