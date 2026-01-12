@@ -53,3 +53,14 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Git/fugitive related
 vim.keymap.set("n", "<leader>g", ":Git<CR>", baseopts)
+-- gp, gP only in Git buffer
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "fugitive",
+	callback = function()
+		local bufnr = vim.api.nvim_get_current_buf()
+		local opts = { buffer = bufnr, remap = false }
+
+		vim.keymap.set("n", "gp", ":Git push<CR>", opts)
+		vim.keymap.set("n", "gP", ":Git pull<CR>", opts)
+	end,
+})
