@@ -52,7 +52,7 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Git/fugitive related
-vim.keymap.set("n", "<leader>g", ":Git<CR>", baseopts)
+vim.keymap.set("n", "<leader>g", ":Git | resize 12<CR>", baseopts)
 -- gp, gP only in Git buffer
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "fugitive",
