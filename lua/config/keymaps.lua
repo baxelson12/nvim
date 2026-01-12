@@ -47,3 +47,7 @@ api.nvim_set_keymap('n', '<leader>wv', '<C-w>v', { noremap = true, silent = true
 
 -- LSP mappings
 vim.keymap.set("n", "<leader>xt", vim.lsp.buf.hover, { noremap = true, silent = true })
+
+-- Move line/selection up/down
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv") 
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
