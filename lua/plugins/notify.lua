@@ -1,10 +1,12 @@
 return {
-	"rcarriga/nvim-notify",
+	"nvim-mini/mini.notify",
+	version = "*",
 	config = function()
-		require("notify").setup({
-			timeout = 10000,
-			stages = "slide",
-			background_colour = "#303446", -- Frappe base color
+		require("mini.notify").setup()
+		vim.notify = require("mini.notify").make_notify({
+			ERROR = { duration = 5000 },
+			WARN = { duration = 5000 },
+			INFO = { duration = 5000 },
 		})
 	end,
 }

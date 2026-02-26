@@ -4,6 +4,7 @@ local baseopts = { noremap = true, silent = true }
 api.nvim_set_keymap("n", "<leader>q", "<cmd>Oil<CR>", baseopts)
 api.nvim_set_keymap("i", "jk", "<esc>", baseopts)
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+api.nvim_set_keymap("n", "<leader>o", "f{a<CR>", { desc = "Open brackets", noremap = false, silent = true })
 
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
