@@ -1,7 +1,5 @@
 return {
-  "ggandor/leap.nvim",
-  dependencies = { "tpope/vim-repeat" },
-  opts = {
-    case_sensitive = true
-  }
+	url = "https://codeberg.org/andyg/leap.nvim",
+	dependencies = { "tpope/vim-repeat" },
+	opts = {},
 }

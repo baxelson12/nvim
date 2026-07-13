@@ -12,7 +12,11 @@ vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 
-require("leap").create_default_mappings()
+local leap = require("leap")
+
+-- Two‑key search forward/backward (Sneak‑style)
+vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap-forward)")
+vim.keymap.set({ "n", "x", "o" }, "S", "<Plug>(leap-backward)")
 
 api.nvim_create_user_command("Format", function(args)
 	local range = nil
