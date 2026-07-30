@@ -8,11 +8,11 @@ opt.relativenumber = true
 opt.number = true
 opt.statuscolumn = "%-2l %-3r "
 opt.scrolloff = 16
--- vim.cmd([[colorscheme dracula-soft]])
+vim.cmd([[colorscheme rikyu]])
 
 local undodir = vim.fn.expand("~/.local/share/nvim/undo")
 if vim.fn.isdirectory(undodir) == 0 then
-  vim.fn.mkdir(undodir, "p")
+	vim.fn.mkdir(undodir, "p")
 end
 
 -- Enable persistent undo and set the undo directory
